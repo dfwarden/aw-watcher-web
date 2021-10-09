@@ -40,6 +40,14 @@ function heartbeat(tab, tabCount) {
   //console.log(JSON.stringify(tab));
   var now = new Date();
   var data = {"url": tab.url, "title": tab.title, "audible": tab.audible, "incognito": tab.incognito, "tabCount": tabCount};
+  // If Firefox with contextualIdentities, enhance data with name of current tab container.
+  if (typeof(tab.cookieStoreId) === "string" && tab.cookieStoreId != "firefox-default" && typeof(browser.contextualIdentities.get) === "function"){
+   browser.contextualIdentities.get(tab.cookieStoreId).then(tabContainer => {
+    data["tabGroup"] = tabContainer.name;
+   }, reason => {
+     console.error(`Could not look up tab container for ${cookieStoreId} because: ${reason}` );
+   });
+  }
   // First heartbeat on startup
   if (last_heartbeat_time === null){
     //console.log("aw-watcher-web: First");

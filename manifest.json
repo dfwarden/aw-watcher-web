@@ -16,7 +16,8 @@
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "{ef87d84c-2127-493f-b952-5b4e744245bc}"
+      "id": "{ef87d84c-2127-493f-b952-5b4e744245bc}",
+      "strict_min_version": "57.0"
     }
   },
 
@@ -33,6 +34,7 @@
     "notifications",
     "activeTab",
     "storage",
+    "contextualIdentities",
     "http://localhost:5600/api/*",
     "http://localhost:5666/api/*"
   ]
